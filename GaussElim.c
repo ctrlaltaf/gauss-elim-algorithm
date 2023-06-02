@@ -2,14 +2,12 @@
 #include <math.h>
 #include <stdlib.h>
 
-
 void swap(double m[20][20], int rowA, int rowB, int n ){
   for(int col = 1; col <= n + 1; col++){
     double temp = m[rowA][col];
     m[rowA][col] = m[rowB][col];
     m[rowB][col] = temp;
   }
-
 }
 
 int largestCoeff(double m[20][20], int row, int col, int n){
@@ -22,10 +20,8 @@ int largestCoeff(double m[20][20], int row, int col, int n){
       rowNumber = i;
     }
   }
-
   return rowNumber;
 }
-
 
 int main()
 {
@@ -60,24 +56,19 @@ printf("enter the name of the file to be read : ") ;
   }  
   printf("\n") ;
 
-  
-
   double solutions[100];
 
   //given n number of systems of equations,
   //we have to eliminate each column at a time
   for(int col = 1, row = 1; col < n; col++,row++){
-
     //we want to find the equation with the largest abs of leading coeff
     int rowSwap = largestCoeff(m, row, col, n);
-
     swap(m, row, rowSwap, n);
 
     //we store the coefficient of the diagonal at i
     double coeff = m[row][col];
 
     //we perform gauss elimination on each of the equations
-
     for(int nextRow = row + 1; nextRow <= n; nextRow++){
       //must scale all variables in each equation
       if(m[nextRow][col] != 0 ){
@@ -89,14 +80,10 @@ printf("enter the name of the file to be read : ") ;
 
         //must also add two equations together w/ their corresponding pairs
         for(int j = 1; j <= n + 1; j++){
-
           m[nextRow][j] = m[row][j] - (m[nextRow][j]);
-
         }
       }
-
     }
-
   }
 
   printf("Upper Trriangular Matrix \n") ;  
@@ -108,18 +95,15 @@ printf("enter the name of the file to be read : ") ;
   }  
   printf("\n") ;
 
-
   //must check if the system is consistent or not
   int indicator = 1;
   for(int i = 1; i <= n; i++){
-
       if(m[i][i] == 0.0){
       printf("inconsistent System\n");
       indicator = 0;
       return(0);
     }
   }
-  
   
   //we do back substitution starting from the bottom equation
   printf("SOLUTION MATRIX\n");
@@ -135,6 +119,4 @@ printf("enter the name of the file to be read : ") ;
       printf("[%lf]\n", solutions[r]);
     }
   }
-
-
 }

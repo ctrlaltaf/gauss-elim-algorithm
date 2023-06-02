@@ -116,7 +116,6 @@ printf("enter the name of the file to be read : ") ;
       }
 
       solutions[r] = (m[r][n+1] - sum)/(m[r][r]);
-      //printf("[%lf]\n", solutions[r]);
     }
   }
 
